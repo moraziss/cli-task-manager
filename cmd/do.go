@@ -11,12 +11,13 @@ import (
 var doCmd = &cobra.Command{
 	Use:   "do",
 	Short: "Marks a task as done",
+	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		var ids []int
 		for _, arg := range args {
 			id, err := strconv.Atoi(arg)
 			if err != nil {
-				fmt.Println("Failed to return the argument:", arg)
+				fmt.Println("Failed to parse the argument:", arg)
 				return
 			} else {
 				ids = append(ids, id)
